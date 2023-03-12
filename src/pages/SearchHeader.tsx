@@ -15,7 +15,7 @@ function SearchHeader() {
     keyword ? setText(keyword) : setText('');
   }, [keyword]);
   return (
-    <header className="flex p-3 border-b-2 border-gray-500">
+    <header className="flex p-3 border-b-2 border-gray-500 mb-2">
       <Link to="/" className="flex items-center">
         <BsYoutube className="text-brand mr-2" size={40} />
         <h1 className="text-2xl font-bold">Youtube</h1>

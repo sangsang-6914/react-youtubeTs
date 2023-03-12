@@ -6,10 +6,14 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import Videos from './pages/Videos';
 import VideoDetail from './pages/VideoDetail';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const client = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -30,6 +34,9 @@ const router = createBrowserRouter([
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={client}>
+      <ReactQueryDevtools initialIsOpen={true} />
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
