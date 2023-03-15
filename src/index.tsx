@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -33,10 +32,8 @@ const router = createBrowserRouter([
 ]);
 
 root.render(
-  <React.StrictMode>
-    <QueryClientProvider client={client}>
-      <ReactQueryDevtools initialIsOpen={true} />
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  </React.StrictMode>
+  <QueryClientProvider client={client}>
+    <ReactQueryDevtools initialIsOpen={true} />
+    <RouterProvider router={router} />
+  </QueryClientProvider>
 );

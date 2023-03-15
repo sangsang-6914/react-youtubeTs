@@ -27,6 +27,7 @@ function VideoCard({ video, type }: IVideoCardProps) {
       <img
         className={isRelated ? 'w-60 mr-2' : 'w-full'}
         src={thumbnails.medium.url}
+        alt=""
       />
       <div>
         <p className="font-bold mb-2 line-clamp-2">{title}</p>

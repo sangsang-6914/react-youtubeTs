@@ -1,26 +1,25 @@
-import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { useYoutubeApi } from '../context/YoutubeApiContext';
 
 interface IChannelInfoProps {
-  id: string | undefined;
+  id: string | undefined | null | any;
   name: string;
 }
 
 function ChannelInfo({ id, name }: IChannelInfoProps) {
-  const {
-    data: url,
-    error,
-    isLoading,
-  } = useQuery(['url'], () => {
-    return axios
-      .get('/videos/channel.json')
-      .then((res) => res.data.items[0].snippet.thumbnails.default.url);
-  });
-  console.log(url);
+  const youtube = useYoutubeApi();
+  const { data: url } = useQuery(
+    ['url'],
+    () => {
+      return youtube.channelImageURL(id);
+    },
+    {
+      staleTime: 60 * 60 * 1000,
+    }
+  );
   return (
     <div className="p-4 flex items-center">
-      <img src={url} className="w-10 h-10 rounded-full mr-3" />
+      <img src={url} className="w-10 h-10 rounded-full mr-3" alt="" />
       <p className="text-xl">{name}</p>
     </div>
   );
